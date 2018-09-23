@@ -10,10 +10,59 @@
 </head>
 <body>
 
+    <!-- bootstrap container -->
+    <div class="container">
 
+        <!-- header -->
+        <header class="jumbotron text-center">
+            <h1>The Iron Horse</h1>
+            <p class="lead">Train Schedule</p>
+        </header>
 
+        <!-- train schedule table -->
+        <section class="card mb-5">
+            <p class="card-header">Current Train Schedule</p>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Train Name</th>
+                            <th>Destination</th>
+                            <th>Frequency (min)</th>
+                            <th>Next Arrival</th>
+                            <th>Minutes Away</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </section>
 
+        <!-- add train form -->
+        <section class="card">
+            <p class="card-header">Add Train</p>
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="trainName">Train Name</label>
+                    <input id="trainName" class="form-control" type="text">
+                </div>
+                <div class="form-group">
+                    <label for="destination">Destination</label>
+                    <input id="destination" class="form-control" type="text">
+                </div>
+                <div class="form-group">
+                    <label for="firstTrainTime">First Train Time (HH:mm - military time)</label>
+                    <input id="firstTrainTime" class="form-control" type="text">
+                </div>
+                <div class="form-group">
+                    <label for="frequency">Frequency</label>
+                    <input id="frequency" class="form-control" type="text">
+                </div>
+                <button id="submit-btn" type="submit" class="btn btn-lg btn-primary">Submit</button>
+            </div>
+        </section>
 
+        
+    </div>
 
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
