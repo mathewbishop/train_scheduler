@@ -86,6 +86,21 @@ function arrivalCalc() {
         console.log("next arrive " + moment(nextTrain).format("hh:mm"));              
 }
 
-$('#submit-btn').click(function() {
+$('#submit-btn').click(function(event) {
+    event.preventDefault();
+    let newRow = $('<tr>')
+    for (let i = 0; i < 5; i++) {
+        let newCell = $('<td>');
+        newCell.html(trainName);
+        newCell.html(destination);
+        newCell.html(firstTrainTime);
+        newCell.html(frequency);
+        newRow.append(newCell);
+    }
+
+
     
+
+    $('.table').append(newRow);
+
 })
