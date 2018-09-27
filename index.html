@@ -24,7 +24,6 @@
             <p class="card-header">Current Train Schedule</p>
             <div class="card-body">
                 <table class="table">
-                    <thead>
                         <tr id="table-head">
                             <th>Train Name</th>
                             <th>Destination</th>
@@ -32,7 +31,6 @@
                             <th>Next Arrival</th>
                             <th>Minutes Away</th>
                         </tr>
-                    </thead>
                 </table>
             </div>
         </section>
@@ -41,6 +39,7 @@
         <section class="card mb-5">
             <p class="card-header">Add Train</p>
             <div class="card-body">
+                <form id="trainInfoForm">
                 <div class="form-group">
                     <label for="trainName">Train Name</label>
                     <input id="trainName" class="form-control" type="text">
@@ -58,6 +57,7 @@
                     <input id="frequency" class="form-control" type="text">
                 </div>
                 <button id="submit-btn" type="submit" class="btn btn-lg btn-primary">Submit</button>
+                </form>
             </div>
         </section>
 

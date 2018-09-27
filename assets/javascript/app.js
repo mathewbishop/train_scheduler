@@ -45,6 +45,7 @@ var config = {
     storageBucket: "mattbishoptest-267ab.appspot.com",
     messagingSenderId: "1060195077989"
   };
+  
   firebase.initializeApp(config);
   
   var database = firebase.database();
@@ -52,13 +53,6 @@ var config = {
   database.ref().on("value", function(snapshot) {
       console.log(snapshot);
   })
-
-const trainName = $('#trainName');
-const destination = $('#destination');
-const firstTrainTime = $('#firstTrainTime');
-const frequency = $('#frequency');
-
-
 
 
 function arrivalCalc() {
@@ -86,21 +80,26 @@ function arrivalCalc() {
         console.log("next arrive " + moment(nextTrain).format("hh:mm"));              
 }
 
+
+
 $('#submit-btn').click(function(event) {
     event.preventDefault();
-    let newRow = $('<tr>')
-    for (let i = 0; i < 5; i++) {
-        let newCell = $('<td>');
-        newCell.html(trainName);
-        newCell.html(destination);
-        newCell.html(firstTrainTime);
-        newCell.html(frequency);
-        newRow.append(newCell);
-    }
+    var newRow = $('<tr>')
 
+    var trainNameData = $('#trainName').val().trim();
+    var destinationData = $('#destination').val().trim();
+    var firstTrainTimeData = $('#firstTrainTime').val().trim();
+    var frequencyData = $('#frequency').val().trim();
 
+    var newData1 = $('<td>').html(trainNameData);
+    var newData2 = $('<td>').html(destinationData);
+    var newData3 = $('<td>').html(firstTrainTimeData);
+    var newData4 = $('<td>').html(frequencyData);
     
+    newRow.append(newData1, newData2, newData4);
 
-    $('.table').append(newRow);
+    $('table').append(newRow);
+
+    $('#trainInfoForm').trigger('reset');
 
 })
