@@ -50,9 +50,7 @@ var config = {
   
   var database = firebase.database();
 
-  database.ref().on("value", function(snapshot) {
-      console.log(snapshot);
-  })
+  
 
   
 
@@ -64,8 +62,7 @@ var config = {
 
 $('#submit-btn').click(function(event) {
     event.preventDefault();
-    var newRow = $('<tr>')
-
+    
     var trainNameData = $('#trainName').val().trim();
     var destinationData = $('#destination').val().trim();
     var frequencyData = $('#frequency').val().trim();
@@ -93,19 +90,43 @@ let minutesTillTrain = tfrequency - tRemainder;
      
 let nextTrain = currentTime.add(minutesTillTrain, "minutes");
     console.log("next arrive " + moment(nextTrain).format("hh:mm"));            
-
-
-
-    var newData1 = $('<td>').html(trainNameData);
-    var newData2 = $('<td>').html(destinationData);
-    var newData3 = $('<td>').html(frequencyData);
-    var newData4 = $('<td>').html(moment(nextTrain).format("hh:mm"));
-    var newData5 = $('<td>').html(minutesTillTrain);
     
-    newRow.append(newData1, newData2, newData3, newData4, newData5);
-    
-    
-    $('table').append(newRow);
     
     $('#trainInfoForm').trigger('reset');
+
+    database.ref().push({
+        trainName: trainNameData,
+        destination: destinationData,
+        frequency: frequencyData,
+        nextArrival: moment(nextTrain).format("hh:mm"),
+        minutesUntil: minutesTillTrain
+    })
+
+
+   
+
+
+})
+
+
+database.ref().on("child_added", function(snapshot, prevChildKey) {
+    console.log(snapshot.val());
+    snapshot.val().trainName;
+    snapshot.val().destination;
+    snapshot.val().frequency;
+    snapshot.val().nextArrival;
+    snapshot.val().minutesUntil;
+
+    var newRow = $('<tr>');
+
+
+    var newData1 = $('<td>').text(snapshot.val().trainName);
+    var newData2 = $('<td>').text(snapshot.val().destination);
+    var newData3 = $('<td>').text(snapshot.val().frequency);
+    var newData4 = $('<td>').text(snapshot.val().nextArrival);
+    var newData5 = $('<td>').text(snapshot.val().minutesUntil);
+
+
+    newRow.append(newData1, newData2, newData3, newData4, newData5);
+    $('table').append(newRow);
 })
